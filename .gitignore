@@ -3,6 +3,8 @@ node_modules/
 
 #Ignore js files for now
 *.js
+dist
+db.sqlite
 
 #Ignore log files
 *.log

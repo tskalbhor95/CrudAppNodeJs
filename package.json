@@ -4,17 +4,42 @@
   "description": "CRUD App based on Node and TypeScript.",
   "main": "src/server.ts",
   "scripts": {
-    "start": "node src/server.ts",
+    "start": "node dist/server.js",
+    "build": "npx tsc",
+    "clean": "rm -rf dist",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Tushar Kalbhor",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.17.21"
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.10",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "eslint": "^8.56.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^9.0.6",
+    "lint-staged": "^15.2.0",
+    "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@types/sqlite3": "^3.1.11",
     "express": "^4.18.2",
     "sqlite3": "^5.1.7"
+  },
+  "lint-staged": {
+  "*.{js,ts}": "eslint --fix"
+},
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
+
 }
