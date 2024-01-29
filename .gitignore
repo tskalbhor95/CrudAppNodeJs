@@ -1,0 +1,15 @@
+#Ignore node modules
+node_modules/
+
+#Ignore js files for now
+*.js
+
+#Ignore log files
+*.log
+
+#Ignore env variables
+.env
+
+#Ignore IDE files
+.idea
+/.gitignore
