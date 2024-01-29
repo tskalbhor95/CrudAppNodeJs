@@ -1,2 +1,2 @@
 # CrudAppNodeJs
-CRUD App based on Node.
+CRUD App based on Node and TypeScript.
