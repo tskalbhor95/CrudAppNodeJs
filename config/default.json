@@ -1,0 +1,8 @@
+{
+  "sql": {
+        "get": "select * from post",
+        "post": "INSERT INTO post (title, content) VALUES  (?, ?)",
+        "put": "UPDATE post SET title = ? , content = ? where id = ?",
+        "delete": "DELETE FROM POST WHERE id  = ?"
+  }
+}

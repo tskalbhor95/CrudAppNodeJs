@@ -1,7 +1,13 @@
 import express from 'express'
 import db from './database'
+import httpStatus from 'http-status-codes'
+import config from 'config'
 const app = express()
 
+const getSql: string = config.get('sql.get')
+const putSql: string = config.get('sql.put')
+const postSql: string = config.get('sql.post')
+const deleteSql: string = config.get('sql.delete')
 const HTTP_PORT = 8080
 
 app.use(express.json())
@@ -10,14 +16,13 @@ app.listen(HTTP_PORT, () => {
   console.log('server running on port http://localhost:%PORT%/'.replace('%PORT%', HTTP_PORT.toString()))
 })
 
-app.get('/', (req, res, next) => {
-  const sql = 'select * from post'
-  const params: any[] = []
-  db.all(sql, params, (err: Error | null, rows: any[]) => {
+app.get('/', (req, res) => {
+  db.all(getSql, [], (err: Error | null, rows: any[]) => {
     if (err !== null) {
-      res.status(400).json({ error: err.message })
+      res.status(httpStatus.BAD_REQUEST).json({ error: err.message })
       return
     }
+    res.status(httpStatus.OK)
     res.json({
       message: 'success',
       data: rows
@@ -25,52 +30,49 @@ app.get('/', (req, res, next) => {
   })
 })
 
-app.post('/posts', (req, res, next) => {
+app.post('/posts', (req, res) => {
   const { title, content } = req.body
-  const sql = 'INSERT INTO post (title, content) VALUES  (?, ?)'
-  const params: any[] = [title, content]
-  db.run(sql, params, (err: Error, row: any[]) => {
+  db.run(postSql, [title, content], (err: Error, row: any[]) => {
     if (err !== null) {
-      res.status(500).json({ error: err.message })
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message })
       return
     }
+    res.status(httpStatus.CREATED)
     res.json({
-      message: 'post addedd'
+      message: 'post added'
     })
   })
 })
 
-app.delete('/posts/:id', (req, res, next) => {
+app.delete('/posts/:id', (req, res) => {
   const postId = req.params.id
-  const sql = 'DELETE FROM POST WHERE id  = ?'
-  const params: any[] = [postId]
-  db.run(sql, params, (err: Error, row: any[]) => {
+  db.run(deleteSql, [postId], (err: Error, row: any[]) => {
     if (err !== null) {
-      res.status(500).json({ error: err.message })
+      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message })
       return
     }
+    res.status(httpStatus.OK)
     res.json({
-      message: 'post deleted'
+      message: `post deleted with ${postId}`
     })
   })
 })
-app.put('/posts/:id', (req, res, next) => {
+app.put('/posts/:id', (req, res) => {
   const postId = req.params.id
   const { title, content } = req.body
-  const sql = 'UPDATE post SET title = ? , content = ? where id = ?'
-  const params: any[] = [title, content, postId]
-  db.run(sql, params, (err: Error, row: any[]) => {
+  db.run(putSql, [title, content, postId], (err: Error, row: any[]) => {
     if (err !== null) {
       res.status(500).json({ error: err.message })
       return
     }
+    res.status(httpStatus.OK)
     res.json({
-      message: 'post updated'
+      message: `post updated with ${postId}`
     })
   })
 })
 app.use(function (req, res) {
-  res.status(404)
+  res.status(httpStatus.NOT_FOUND)
 })
 
 export default app
