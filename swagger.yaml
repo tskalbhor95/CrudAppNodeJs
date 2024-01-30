@@ -1,0 +1,72 @@
+openapi: '3.0.0'
+info:
+  title: My API
+  version: '1.0.0'
+  description: My API Description
+paths:
+  /posts:
+    get:
+      summary: Get all posts
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad request
+    post:
+      summary: Create a new post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+      responses:
+        '201':
+          description: Post created
+        '500':
+          description: Internal server error
+  /posts/{id}:
+    delete:
+      summary: Delete a post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the post to delete.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Post deleted
+        '500':
+          description: Internal server error
+    put:
+      summary: Update a post
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the post to update.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+      responses:
+        '200':
+          description: Post updated
+        '500':
+          description: Internal server error

@@ -16,6 +16,9 @@ COPY . .
 # Copy the configuration files to the working directory
 COPY ./config ./config
 
+# Copy the swagger.yaml file to the working directory
+COPY ./swagger.yaml ./swagger.yaml
+
 # Build the TypeScript files
 RUN npm run build
 
@@ -30,6 +33,10 @@ COPY --from=builder /app/dist ./dist
 
 # Copy the configuration files from the builder stage
 COPY --from=builder /app/config ./config
+
+
+# Copy the swagger.yaml file from the builder stage
+COPY --from=builder /app/swagger.yaml ./swagger.yaml
 
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./

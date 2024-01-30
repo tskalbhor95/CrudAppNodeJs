@@ -13,7 +13,7 @@ afterEach(() => {
 })
 describe('all endpoints', () => {
   it('should 200 get', async () => {
-    const res = await request(app).get('/')
+    const res = await request(app).get('/posts')
     expect(res.status).to.equal(200)
   })
 
