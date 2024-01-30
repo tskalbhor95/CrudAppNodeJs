@@ -59,5 +59,3 @@ This will compile the TypeScript code and start the server.
 This project is licensed under the ISC License.
 
 ---
-
-Feel free to modify and expand this README to better suit your project needs!
