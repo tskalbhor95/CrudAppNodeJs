@@ -15,24 +15,6 @@ npm install
 
 ## Usage
 
-To start the server, run:
-
-```bash
-npm start
-```
-
-This will compile the TypeScript code and start the server.
-
-## Scripts
-
-- **start**: Starts the server.
-- **build**: Compiles TypeScript code to JavaScript.
-- **clean**: Removes the `dist` directory.
-- **lint**: Lints TypeScript code using ESLint.
-- **lint:fix**: Lints and fixes TypeScript code using ESLint.
-- **test**: Placeholder for running tests.
-
-
 For development, you can run the following commands in sequence:
 
 ```bash
@@ -47,14 +29,31 @@ npm run build
 npm run start
 ```
 
+This will compile the TypeScript code and start the server.
+
+## Scripts
+
+- **start**: Starts the server.
+- **build**: Compiles TypeScript code to JavaScript.
+- **clean**: Removes the `dist` directory.
+- **lint**: Lints TypeScript code using ESLint.
+- **lint:fix**: Lints and fixes TypeScript code using ESLint.
+- **test**: Placeholder for running tests.
+
+
+
+
 ## Docker
 
 This project includes a Dockerfile for easy deployment. To build the Docker image,
-run: **docker build -t crudappnodejs**
+
+run: ``docker build -t crudappnodejs``
+
 This will create a Docker image named `crudappnodejs`.
 
-To run the Docker container, use:
-**docker run -p 8080:8080 crudappnodejs**
+To run the Docker container, 
+use:
+``docker run -p 8080:8080 crudappnodejs``
 
 his will start a Docker container and map port 8080 inside the Docker container to port 8080 on your host machine.
 
