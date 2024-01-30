@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
 
-    "types": ["mocha", "chai", "node", "supertest"]
+    "types": ["mocha", "chai", "node", "supertest","chai-http"]
   },
   "include": ["src/**/*.ts", "test/**/*.test.ts"],
   "exclude": ["node_modules"]
