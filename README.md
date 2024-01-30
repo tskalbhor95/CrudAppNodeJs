@@ -3,7 +3,7 @@
 
 ## Description
 
-This CRUD (Create, Read, Update, Delete) App is built using Node.js and TypeScript. It provides basic functionality to perform CRUD operations on a database.
+This CRUD (Create, Read, Update, Delete) App is built using Node.js and TypeScript. It provides basic functionality to perform CRUD operations on a (sqlite3)database.
 
 ## Installation
 
@@ -32,6 +32,85 @@ This will compile the TypeScript code and start the server.
 - **lint:fix**: Lints and fixes TypeScript code using ESLint.
 - **test**: Placeholder for running tests.
 
+
+For development, you can run the following commands in sequence:
+
+```bash
+npm run clean
+```
+
+```bash
+npm run build
+```
+
+```bash
+npm run start
+```
+
+## Docker
+
+This project includes a Dockerfile for easy deployment. To build the Docker image,
+run: **docker build -t crudappnodejs**
+This will create a Docker image named `crudappnodejs`.
+
+To run the Docker container, use:
+**docker run -p 8080:8080 crudappnodejs**
+
+his will start a Docker container and map port 8080 inside the Docker container to port 8080 on your host machine.
+
+Please note that you need to have Docker installed on your machine to use these commands.
+Please replace `crudappnodejs` with the name of your Docker image.
+
+## API Endpoints
+
+This API provides the following endpoints:
+
+### GET /posts
+
+Get all posts.
+
+#### Response
+
+- `200`: Successful response. Returns an array of posts.
+- `400`: Bad request. The request was invalid or cannot be served.
+
+### POST /posts
+
+Create a new post.
+
+#### Request Body
+#### Responses
+
+- `201`: Post created. Returns the created post.
+- `500`: Internal server error. An error occurred while processing the request.
+
+### DELETE /posts/{id}
+
+Delete a post.
+
+#### Parameters
+
+- `id`: ID of the post to delete.
+
+#### Responses
+
+- `200`: Post deleted.
+- `500`: Internal server error. An error occurred while processing the request.
+
+### PUT /posts/{id}
+
+Update a post.
+
+#### Parameters
+
+- `id`: ID of the post to update.
+
+#### Request Body
+
+#### Responses
+
+- `200`: Post updated. Returns the updated post.
+- `500`: Internal server error. An error occurred while processing the request.
 ## Dependencies
 
 - **express**: Fast, unopinionated, minimalist web framework for Node.js.
