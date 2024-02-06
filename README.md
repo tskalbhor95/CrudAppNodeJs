@@ -26,6 +26,7 @@ This will clean the dist repo, compile the TypeScript code and start the server.
 - **start**: Starts the server.
 - **build**: Compiles TypeScript code to JavaScript.
 - **clean**: Removes the `dist` directory.
+- **dev**: Cleans & compiles TypeScript code and starts the server.
 - **lint**: Lints TypeScript code using ESLint.
 - **lint:fix**: Lints and fixes TypeScript code using ESLint.
 - **test**: Placeholder for running tests.
