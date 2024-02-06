@@ -16,20 +16,10 @@ npm install
 ## Usage
 
 For development, you can run the following commands in sequence:
-
 ```bash
-npm run clean
+npm run dev
 ```
-
-```bash
-npm run build
-```
-
-```bash
-npm run start
-```
-
-This will compile the TypeScript code and start the server.
+This will clean the dist repo, compile the TypeScript code and start the server.
 
 ## Scripts
 
@@ -47,7 +37,7 @@ This will compile the TypeScript code and start the server.
 
 This project includes a Dockerfile for easy deployment. To build the Docker image,
 
-run: ``docker build -t crudappnodejs``
+run: ``docker build -t crudappnodejs .``
 
 This will create a Docker image named `crudappnodejs`.
 
@@ -71,7 +61,7 @@ Get all posts.
 #### Response
 
 - `200`: Successful response. Returns an array of posts.
-- `400`: Bad request. The request was invalid or cannot be served.
+- `500`: Internal server error. An error occurred while processing the request.
 
 ### POST /posts
 
@@ -80,8 +70,22 @@ Create a new post.
 #### Request Body
 #### Responses
 
-- `201`: Post created. Returns the created post.
+- `201`: Post created..
 - `500`: Internal server error. An error occurred while processing the request.
+
+### GET /posts/{id}
+
+get a post by id.
+
+#### Parameters
+
+- `id`: ID of the post.
+#### Response
+
+- `200`: Successful response with post.
+- `404`: Error - post not found.
+- `500`: Internal server error. An error occurred while processing the request.
+
 
 ### DELETE /posts/{id}
 
@@ -93,7 +97,7 @@ Delete a post.
 
 #### Responses
 
-- `200`: Post deleted.
+- `204`: Post deleted.
 - `500`: Internal server error. An error occurred while processing the request.
 
 ### PUT /posts/{id}
@@ -108,7 +112,7 @@ Update a post.
 
 #### Responses
 
-- `200`: Post updated. Returns the updated post.
+- `200`: Post updated.
 - `500`: Internal server error. An error occurred while processing the request.
 ## Dependencies
 

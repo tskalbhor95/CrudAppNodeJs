@@ -16,7 +16,7 @@ try {
 
   // Serve Swagger documentation
   // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(data) as express.RequestHandler)
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(data))
 } catch (e) {
   console.error(e)
 }

@@ -1,8 +1,8 @@
 openapi: '3.0.0'
 info:
-  title: My API
+  title: CRUD App based on Node and TypeScript
   version: '1.0.0'
-  description: My API Description
+  description: CRUD Apis for post.
 paths:
   /posts:
     get:
@@ -10,8 +10,27 @@ paths:
       responses:
         '200':
           description: Successful response
-        '400':
-          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      additionalProperties: true
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
     post:
       summary: Create a new post
       requestBody:
@@ -28,8 +47,22 @@ paths:
       responses:
         '201':
           description: Post created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
   /posts/{id}:
     delete:
       summary: Delete a post
@@ -39,12 +72,26 @@ paths:
           required: true
           description: ID of the post to delete.
           schema:
-            type: string
+            type: integer
       responses:
-        '200':
+        '204':
           description: Post deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
     put:
       summary: Update a post
       parameters:
@@ -53,7 +100,7 @@ paths:
           required: true
           description: ID of the post to update.
           schema:
-            type: string
+            type: integer
       requestBody:
         required: true
         content:
@@ -68,5 +115,40 @@ paths:
       responses:
         '200':
           description: Post updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    get:
+      summary: Get a post by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the post to retrieve.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Post retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
         '500':
           description: Internal server error

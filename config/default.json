@@ -1,6 +1,7 @@
 {
   "sql": {
-        "get": "select * from post",
+        "getAll": "select * from post",
+        "get": "select * from post where id = ?",
         "post": "INSERT INTO post (title, content) VALUES  (?, ?)",
         "put": "UPDATE post SET title = ? , content = ? where id = ?",
         "delete": "DELETE FROM POST WHERE id  = ?"
