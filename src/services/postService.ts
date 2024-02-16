@@ -1,5 +1,6 @@
 import db from '../database'
 import config from 'config'
+import { type Post } from '../model/Post'
 
 const getSql: string = config.get('sql.get')
 const getAllSql: string = config.get('sql.getAll')
@@ -7,9 +8,9 @@ const putSql: string = config.get('sql.put')
 const postSql: string = config.get('sql.post')
 const deleteSql: string = config.get('sql.delete')
 
-export const getPosts = async (): Promise<any[]> => {
-  return await new Promise<any[]>((resolve, reject) => {
-    db.all(getAllSql, [], (err: Error, rows: any[]) => {
+export const getPosts = async (): Promise<Post[]> => {
+  return await new Promise<Post[]>((resolve, reject) => {
+    db.all(getAllSql, [], (err: Error, rows: Post[]) => {
       if (err != null) {
         reject(err)
       } else {
@@ -19,9 +20,9 @@ export const getPosts = async (): Promise<any[]> => {
   })
 }
 
-export const getPost = async (id: number): Promise<any> => {
-  return await new Promise<any>((resolve, reject) => {
-    db.get(getSql, [id], (err: Error, row: any) => {
+export const getPost = async (id: number): Promise<Post> => {
+  return await new Promise<Post>((resolve, reject) => {
+    db.get(getSql, [id], (err: Error, row: Post) => {
       if (err !== null) {
         console.log(err)
         reject(err)
@@ -32,7 +33,7 @@ export const getPost = async (id: number): Promise<any> => {
   })
 }
 
-export const createPost = async (title: string, content: object): Promise<void> => {
+export const createPost = async (title: string, content: string): Promise<void> => {
   await new Promise<void>((resolve, reject) => {
     db.run(postSql, [title, content], (err: Error) => {
       if (err !== null) {

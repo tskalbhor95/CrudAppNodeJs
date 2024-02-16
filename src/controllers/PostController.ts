@@ -1,11 +1,12 @@
 import httpStatus from 'http-status-codes'
 import { type Request, type Response } from 'express'
-import { getPosts, createPost, updatePost, deletePost, getPost } from '../services/dbservice'
+import { getPosts, createPost, updatePost, deletePost, getPost } from '../services/postService'
+import { type Post } from '../model/Post'
 
 class PostController {
   async getPosts (req: Request, res: Response): Promise<void> {
     try {
-      const posts: any[] = await getPosts()
+      const posts: Post[] = await getPosts()
       res.status(httpStatus.OK).json({
         message: 'Posts retrieved successfully',
         data: posts
@@ -18,7 +19,7 @@ class PostController {
   async getPost (req: Request, res: Response): Promise<void> {
     const postId: number = Number(req.params.id)
     try {
-      const post: any = await getPost(postId)
+      const post: Post = await getPost(postId)
       post === undefined
         ? res.status(httpStatus.NOT_FOUND).json({ message: 'Post Not Found' })
         : res.status(httpStatus.OK).json({ message: 'Posts retrieved successfully', data: post })
@@ -28,7 +29,19 @@ class PostController {
   }
 
   async createPost (req: Request, res: Response): Promise<void> {
-    const { title, content } = req.body as { title: string, content: object }
+    const { title, content } = req.body as { title: string, content: string }
+
+    if (typeof title !== 'string' || typeof content !== 'string') {
+      res.status(httpStatus.BAD_REQUEST).json({
+        error: 'Invalid request body. Title must be a string and content must be an object.'
+      })
+    }
+
+    if ((title.trim() === '') || Object.keys(content).length === 0) {
+      res.status(httpStatus.BAD_REQUEST).json({
+        error: 'Title and content must not be empty.'
+      })
+    }
     try {
       await createPost(title, content)
       res.status(httpStatus.CREATED).json({ message: 'Post created successfully' })

@@ -19,5 +19,4 @@ const db = new sql.Database(DB_SOURCE, (err: any) => {
     })
   }
 })
-
 export default db
