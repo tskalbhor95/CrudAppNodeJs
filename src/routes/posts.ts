@@ -4,7 +4,7 @@ import PostController from '../controllers/PostController'
 const router = express.Router()
 const postCtrlInstance = new PostController()
 
-router.get('/', (req, res) => { void postCtrlInstance.getPosts(req, res) })
+router.get('/', (req, res) => { void postCtrlInstance.getAllPosts(req, res) })
 
 router.post('/', (req, res) => { void postCtrlInstance.createPost(req, res) })
 

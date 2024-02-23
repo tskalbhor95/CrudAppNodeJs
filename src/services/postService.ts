@@ -8,7 +8,7 @@ const putSql: string = config.get('sql.put')
 const postSql: string = config.get('sql.post')
 const deleteSql: string = config.get('sql.delete')
 
-export const getPosts = async (): Promise<Post[]> => {
+export const getAllPosts = async (): Promise<Post[]> => {
   return await new Promise<Post[]>((resolve, reject) => {
     db.all(getAllSql, [], (err: Error, rows: Post[]) => {
       if (err != null) {

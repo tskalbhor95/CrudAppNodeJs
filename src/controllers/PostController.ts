@@ -1,12 +1,12 @@
 import httpStatus from 'http-status-codes'
 import { type Request, type Response } from 'express'
-import { getPosts, createPost, updatePost, deletePost, getPost } from '../services/postService'
+import { getAllPosts, createPost, updatePost, deletePost, getPost } from '../services/postService'
 import { type Post } from '../model/Post'
 
 class PostController {
-  async getPosts (req: Request, res: Response): Promise<void> {
+  async getAllPosts (req: Request, res: Response): Promise<void> {
     try {
-      const posts: Post[] = await getPosts()
+      const posts: Post[] = await getAllPosts()
       res.status(httpStatus.OK).json({
         message: 'Posts retrieved successfully',
         data: posts
@@ -37,7 +37,7 @@ class PostController {
       })
     }
 
-    if ((title.trim() === '') || Object.keys(content).length === 0) {
+    if ((title.trim() === '') || content.trim() === '') {
       res.status(httpStatus.BAD_REQUEST).json({
         error: 'Title and content must not be empty.'
       })

@@ -2,14 +2,23 @@ openapi: '3.0.0'
 info:
   title: CRUD App based on Node and TypeScript
   version: '1.0.0'
-  description: CRUD Apis for post.
+  description: CRUD Apis for Post.
+  contact: {
+    name: Tushar,
+    email: tskalbhor95@gmail.com
+
+  }
+
 paths:
   /posts:
     get:
       summary: Get all posts
+      description: Retrieves all posts stored in the database.
+      tags:
+        - Posts
       responses:
         '200':
-          description: Successful response
+          description: Posts retrieved successfully
           content:
             application/json:
               schema:
@@ -17,11 +26,27 @@ paths:
                 properties:
                   message:
                     type: string
+                    example: Posts retrieved successfully
                   data:
                     type: array
                     items:
                       type: object
-                      additionalProperties: true
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        title:
+                          type: string
+                          example: "string"
+                        content:
+                          type: string
+                          example: "string"
+              example:
+                message: Posts retrieved successfully
+                data:
+                  - id: 1
+                    title: "string"
+                    content: "string"
         '500':
           description: Internal server error
           content:
@@ -33,6 +58,9 @@ paths:
                     type: string
     post:
       summary: Create a new post
+      description: Creates a new post with the provided data.
+      tags:
+        - Posts
       requestBody:
         required: true
         content:
@@ -46,7 +74,7 @@ paths:
                   type: string
       responses:
         '201':
-          description: Post created
+          description: Post created successfully
           content:
             application/json:
               schema:
@@ -54,8 +82,18 @@ paths:
                 properties:
                   message:
                     type: string
+                    example: Post created successfully
         '500':
           description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '400':
+          description: Bad Request
           content:
             application/json:
               schema:
@@ -66,6 +104,9 @@ paths:
   /posts/{id}:
     delete:
       summary: Delete a post
+      description: Deletes the specified post.
+      tags:
+        - Posts
       parameters:
         - in: path
           name: id
@@ -94,6 +135,9 @@ paths:
                     type: string
     put:
       summary: Update a post
+      description: Updates an existing post with the provided data.
+      tags:
+        - Posts
       parameters:
         - in: path
           name: id
@@ -131,8 +175,29 @@ paths:
                 properties:
                   error:
                     type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '204':
+          description: No Content
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
     get:
       summary: Get a post by ID
+      description: Retrieves a post by its unique ID.
+      tags:
+        - Posts
       parameters:
         - in: path
           name: id
@@ -152,3 +217,19 @@ paths:
                     type: string
         '500':
           description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string

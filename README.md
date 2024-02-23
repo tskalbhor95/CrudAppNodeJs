@@ -29,7 +29,7 @@ This will clean the dist repo, compile the TypeScript code and start the server.
 - **dev**: Cleans & compiles TypeScript code and starts the server.
 - **lint**: Lints TypeScript code using ESLint.
 - **lint:fix**: Lints and fixes TypeScript code using ESLint.
-- **test**: Placeholder for running tests.
+- **test**: Runs test cases.
 
 
 
@@ -117,21 +117,46 @@ Update a post.
 - `500`: Internal server error. An error occurred while processing the request.
 ## Dependencies
 
-- **express**: Fast, unopinionated, minimalist web framework for Node.js.
-- **sqlite3**: SQLite3 bindings for Node.js.
-- **@types/express**: TypeScript definitions for Express.
-- **@types/sqlite3**: TypeScript definitions for SQLite3.
-
+- **@types/sqlite3**: Provides TypeScript type definitions for SQLite3.
+- **config**: Simplifies the creation of configuration files and loading of configuration data.
+- **cors**: Middleware for enabling Cross-Origin Resource Sharing (CORS) in Express.js.
+- **express**: Web application framework for Node.js, simplifying the creation of APIs and web servers.
+- **http-status-codes**: Library providing a convenient way to access HTTP status codes.
+- **js-yaml**: YAML parser and serializer for JavaScript.
+- **sqlite3**: SQLite3 bindings for Node.js, allowing interaction with SQLite databases.
+- **supertest**: Library for testing HTTP servers in Node.js.
+- **swagger-jsdoc**: Tool to generate Swagger/OpenAPI documentation from JSDoc comments.
+- **swagger-ui-express**: Middleware to serve Swagger UI for Express.js, facilitating API documentation.
+- **ts-node**: TypeScript execution environment and REPL for Node.js.
+- **tsx**: TypeScript tooling for JSX syntax.
 ## Dev Dependencies
 
-- **typescript**: TypeScript is a language for application-scale JavaScript.
-- **eslint**: Find and fix problems in your JavaScript/TypeScript code.
+- **@types/chai**: Provides TypeScript type definitions for Chai assertion library.
+- **@types/chai-http**: Provides TypeScript type definitions for Chai HTTP plugin.
+- **@types/config**: TypeScript type definitions for the config package.
+- **@types/cors**: TypeScript type definitions for Cross-Origin Resource Sharing (CORS) middleware.
+- **@types/express**: TypeScript type definitions for Express.js.
+- **@types/js-yaml**: TypeScript type definitions for js-yaml YAML parser and serializer.
+- **@types/mocha**: TypeScript type definitions for Mocha testing framework.
+- **@types/node**: TypeScript type definitions for Node.js.
+- **@types/sinon**: TypeScript type definitions for Sinon.js mocking framework.
+- **@types/supertest**: TypeScript type definitions for Supertest HTTP testing library.
+- **@types/swagger-ui-express**: TypeScript type definitions for Swagger UI Express middleware.
 - **@typescript-eslint/eslint-plugin**: ESLint plugin for TypeScript.
-- **@typescript-eslint/parser**: Parser for TypeScript.
-- **eslint-config-standard-with-typescript**: ESLint configuration for TypeScript.
-- **eslint-plugin-import**: ESLint plugin for linting import/export syntax.
-- **eslint-plugin-n**: ESLint plugin to enforce newline consistency.
-- **eslint-plugin-promise**: ESLint plugin for linting Promise objects.
+- **@typescript-eslint/parser**: Parser for TypeScript ESLint.
+- **chai**: BDD / TDD assertion library for Node.js and the browser.
+- **chai-http**: HTTP integration testing with Chai assertions.
+- **eslint**: A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript.
+- **eslint-config-standard-with-typescript**: ESLint shareable config for JavaScript and TypeScript.
+- **eslint-plugin-import**: ESLint plugin with rules that help validate proper imports.
+- **eslint-plugin-n**: ESLint plugin to enforce usage of Node.js-style imports/exports in modules.
+- **eslint-plugin-promise**: ESLint plugin to enforce best practices for JavaScript promises.
+- **husky**: Git hooks made easy.
+- **lint-staged**: Run linters on git staged files.
+- **mocha**: Simple, flexible, fun JavaScript test framework for Node.js & The Browser.
+- **nyc**: Command-line client for Istanbul, the code coverage tool.
+- **sinon**: Test spies, stubs, and mocks for JavaScript.
+- **typescript**: TypeScript is a superset of JavaScript that compiles to clean JavaScript output.
 
 ## Author
 
