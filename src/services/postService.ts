@@ -2,15 +2,15 @@ import db from '../database'
 import config from 'config'
 import { type Post } from '../model/Post'
 
-const getSql: string = config.get('sql.get')
-const getAllSql: string = config.get('sql.getAll')
-const putSql: string = config.get('sql.put')
-const postSql: string = config.get('sql.post')
-const deleteSql: string = config.get('sql.delete')
+const getPostSql: string = config.get('sql.getPost')
+const getAllPostsSql: string = config.get('sql.getAllPosts')
+const updatePostSql: string = config.get('sql.updatePost')
+const createPostSql: string = config.get('sql.createPost')
+const deletePostSql: string = config.get('sql.deletePost')
 
 export const getAllPosts = async (): Promise<Post[]> => {
   return await new Promise<Post[]>((resolve, reject) => {
-    db.all(getAllSql, [], (err: Error, rows: Post[]) => {
+    db.all(getAllPostsSql, [], (err: Error, rows: Post[]) => {
       if (err != null) {
         reject(err)
       } else {
@@ -22,7 +22,7 @@ export const getAllPosts = async (): Promise<Post[]> => {
 
 export const getPost = async (id: number): Promise<Post> => {
   return await new Promise<Post>((resolve, reject) => {
-    db.get(getSql, [id], (err: Error, row: Post) => {
+    db.get(getPostSql, [id], (err: Error, row: Post) => {
       if (err !== null) {
         console.log(err)
         reject(err)
@@ -35,7 +35,7 @@ export const getPost = async (id: number): Promise<Post> => {
 
 export const createPost = async (title: string, content: string): Promise<void> => {
   await new Promise<void>((resolve, reject) => {
-    db.run(postSql, [title, content], (err: Error) => {
+    db.run(createPostSql, [title, content], (err: Error) => {
       if (err !== null) {
         reject(err)
       } else {
@@ -47,7 +47,7 @@ export const createPost = async (title: string, content: string): Promise<void> 
 
 export const updatePost = async (id: number, title: string, content: object): Promise<void> => {
   await new Promise<void>((resolve, reject) => {
-    db.run(putSql, [title, content, id], (err) => {
+    db.run(updatePostSql, [title, content, id], (err) => {
       if (err !== null) {
         reject(err)
       } else {
@@ -59,7 +59,7 @@ export const updatePost = async (id: number, title: string, content: object): Pr
 
 export const deletePost = async (id: number): Promise<void> => {
   await new Promise<void>((resolve, reject) => {
-    db.run(deleteSql, [id], (err) => {
+    db.run(deletePostSql, [id], (err) => {
       if (err !== null) {
         reject(err)
       } else {

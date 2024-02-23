@@ -1,9 +1,9 @@
 {
   "sql": {
-        "getAll": "select * from post",
-        "get": "select * from post where id = ?",
-        "post": "INSERT INTO post (title, content) VALUES  (?, ?)",
-        "put": "UPDATE post SET title = ? , content = ? where id = ?",
-        "delete": "DELETE FROM POST WHERE id  = ?"
+        "getAllPosts": "SELECT * FROM POST",
+        "getPost": "SELECT * FROM POST WHERE ID = ?",
+        "createPost": "INSERT INTO POST (TITLE, CONTENT) VALUES  (?, ?)",
+        "updatePost": "UPDATE POST SET TITLE = ? , CONTENT = ? WHERE ID = ?",
+        "deletePost": "DELETE FROM POST WHERE id  = ?"
   }
 }
