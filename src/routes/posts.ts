@@ -12,4 +12,5 @@ router.put('/:id', (req, res) => { void postCtrlInstance.updatePost(req, res) })
 router.get('/:id', (req, res) => { void postCtrlInstance.getPost(req, res) })
 
 router.delete('/:id', (req, res) => { void postCtrlInstance.deletePost(req, res) })
+
 export default router

@@ -11,7 +11,7 @@ const deletePostSql: string = config.get('sql.deletePost')
 export const getAllPosts = async (): Promise<Post[]> => {
   return await new Promise<Post[]>((resolve, reject) => {
     db.all(getAllPostsSql, [], (err: Error, rows: Post[]) => {
-      if (err != null) {
+      if (err !== null) {
         reject(err)
       } else {
         resolve(rows)
@@ -33,13 +33,14 @@ export const getPost = async (id: number): Promise<Post> => {
   })
 }
 
-export const createPost = async (title: string, content: string): Promise<void> => {
-  await new Promise<void>((resolve, reject) => {
-    db.run(createPostSql, [title, content], (err: Error) => {
+export const createPost = async (title: string, content: string): Promise<number> => {
+  return await new Promise<number>((resolve, reject) => {
+    db.run(createPostSql, [title, content], function (err: Error) {
       if (err !== null) {
         reject(err)
       } else {
-        resolve()
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+        resolve(this.lastID)
       }
     })
   })

@@ -35,16 +35,19 @@ class PostController {
       res.status(httpStatus.BAD_REQUEST).json({
         error: 'Invalid request body. Title must be a string and content must be an object.'
       })
+      return
     }
 
     if ((title.trim() === '') || content.trim() === '') {
       res.status(httpStatus.BAD_REQUEST).json({
         error: 'Title and content must not be empty.'
       })
+      return
     }
     try {
-      await createPost(title, content)
-      res.status(httpStatus.CREATED).json({ message: 'Post created successfully' })
+      const postId: number = await createPost(title, content)
+
+      res.status(httpStatus.CREATED).json({ postId })
     } catch (err: any) {
       res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: err.message })
     }
